@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>계산기</title>
+    <script>
+        function calculateFunction() {
+            const op = document.getElementById("operator").value;
+            const a = Number(document.getElementById("value1").value);
+            const b = Number(document.getElementById("value2").value);
+            const result = document.getElementById("result");
+            
+            switch (op) {
+                case '+':
+                    result.innerHTML = a+b;
+                    break;
+                case '-':
+                    result.innerHTML = a-b;
+                    break;
+                case '*':
+                    result.innerHTML = a*b;
+                    break;
+                case '/':
+                    result.innerHTML = a/b;
+                    break;
+                default:
+                    
+            }
+        }
+    </script>
+</head>
+<body>
+    <p>계산기</p>
+    <div>
+        <select name="operator" id="operator">
+            <option value="+">+</option>
+            <option value="-">-</option>
+            <option value="*">*</option>
+            <option value="/">/</option>
+        </select>
+        <input type="text" id="value1">
+        <input type="text" id="value2">
+        <button onclick="calculateFunction()">계산하기</button>
+    </div>
+    <div>
+        <p id="result">결과</p>
+    </div>
+</body>
+</html>
+
+<!-- 입력 값 가져오기 -->
+ <!-- <input type="text" id="test">
+    <button onclick="dataget()">데이터get</button>
+    <script>
+        function dataget() {
+            const myValue = document.getElementById("test").value;
+            console.log(myValue);
+        }
+    </script> -->
