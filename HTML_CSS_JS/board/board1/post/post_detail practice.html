@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>게시글 상세 조회</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css">
+    <script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+</head>
+<body>
+    <!-- <object style="width: 100%;" data="../common/header.html" type="text/html"></object> -->
+     <nav class="navbar bg-dark navbar-dark navbar-expand-lg">
+        <a href="../post/post_list.html" class="navbar-brand mx-auto">게시판 서비스</a>
+        <ul class="navbar-nav">
+            <li class="nav-item">
+                <a href="../author/author_list.html" class="nav-link">회원 목록</a>
+            </li>
+            <li class="nav-item">
+                <a href="../post/post_list.html" class="nav-link">게시글 목록</a>
+            </li>
+            <li class="nav-item">
+                <a href="../author/author_register.html" class="nav-link">회원가입</a>
+            </li>
+        </ul>
+    </nav>
+    <div class="container">
+        <h3>게시글 상세 조회</h3>
+        <input type="text" id="text1">
+        <button onclick="postApiSingleData()" class="btn btn-primary">조회</button>
+        <table class="table">
+            <tr>
+                <td>userId</td><td>id</td><td>title</td><td>body</td>
+            </tr> 
+            <tbody id="tbodyId">
+            <!-- 동적 데이터 넣기 -->
+            </tbody>
+
+        </table>
+    </div>
+    <script>
+        async function postApiSingleData() {
+    try {
+        const textValue = document.getElementById("text1").value;
+        if (!textValue || isNaN(textValue)) {
+            alert("숫자를 입력하세요.");
+            return;
+        }
+        const result = await axios.get(`https://jsonplaceholder.typicode.com/posts/${textValue}`);
+
+        const obj = result.data;
+
+        if (!obj || Object.keys(obj).length === 0) {
+            alert("해당 번호에 대한 데이터가 없습니다.");
+            return;
+        }
+        const element = document.getElementById("tbodyId");
+        element.innerHTML += `<tr><td>${obj.userId}</td><td>${obj.id}</td><td>${obj.title}</td><td>${obj.body}</td></tr>`;
+    } catch (e) {
+        console.error(e);
+        alert("데이터를 불러오는 중 오류가 발생했습니다.");
+    }
+}
+
+    </script>
+</body>
+</html>

@@ -7,11 +7,33 @@
 </head>
 <!-- 콜백함수 : 다른 함수의 매개변수로 사용되는 것 -->
 <body>
-    <button onclick="basicFunction">일반함수 예제</button>
-    <button>콜백함수 예제1</button>
+    <button onclick="basicFunction()">일반함수 예제</button>
+    <button onclick="callBackFunction1()">콜백함수 예제1</button>
+    <button onclick="callBackFunction2()">콜백함수 예제2</button>
+    <button onclick="callBackFunction3()">콜백함수 예제3</button>
     <script>
         function basicFunction() {
             console.log("hello world");
+        }
+        function callBackFunction1() {
+            userInput((name) => {alert(name+"님 안녕하세요")});
+        }
+        function userInput(callback) {
+            callback("홍길동");
+        }
+        function callBackFunction2() {
+            const numbers = [1,2,3,4,5];
+            numbers.forEach((a) => console.log(a)); // 콜백함수의 일종
+            // javascript는 기본적으로 동기적으로 동작한다. (멀티스레드 지원 안 됨)
+            console.log("hello world");
+        }
+        function callBackFunction3() {
+            // setTimeout : 콜백함수 처리 + 비동기적으로 동작하는 대표적인 함수
+            // 2초 뒤에 매개변수로 주어지는 콜백함수를 실행
+            setTimeout(() => console.log("hello world1"), 2000);
+            console.log("hello world2");
+            setTimeout(() => console.log("hello world3"), 2000);
+            console.log("hello world4");
         }
     </script>
 </body>
